@@ -70,8 +70,8 @@ conn = connection()
 @memory_profiler.profile
 def main():
     for i in range(args.num_records):
-        user = create_user(conn, "erickv", "Hello world")[0]
-        todo = create_todo(conn, user, "todo erickv", datetime.now())[0]
+        user = create_user(conn, f"user-{i}", f"pass-{i}")[0]
+        todo = create_todo(conn, user, f"todo-{i}", datetime.now())[0]
 
 
 if __name__ == "__main__":

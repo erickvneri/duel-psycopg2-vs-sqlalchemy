@@ -109,8 +109,8 @@ def main():
     conn = init()
 
     for i in range(args.num_records):
-        user = create_user(conn, "erickv", "Hello world")
-        todo = create_todo(conn, "todo", str(user[0]), datetime.now())
+        user = create_user(conn, f"user-{i}", f"pass-{i}")
+        todo = create_todo(conn, f"todo-{i}", str(user[0]), datetime.now())
 
 
 if __name__ == "__main__":
