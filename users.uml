@@ -1,0 +1,15 @@
+@startuml
+' Entities
+entity users {
+    *uuid : uuid
+    *username : varchar
+    *email : varchar
+    *password : varchar
+    *access_policy : varchar[]
+    *verified : boolean
+    *verified_at : timestamp
+    *created_at : timestamp
+    *updated_at : timestamp
+    *deleted_at : timestamp
+}
+@enduml

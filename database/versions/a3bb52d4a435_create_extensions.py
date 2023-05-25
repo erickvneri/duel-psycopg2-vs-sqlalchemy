@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a3bb52d4a435'
+revision = "a3bb52d4a435"
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -18,8 +18,8 @@ depends_on = None
 
 def upgrade() -> None:
     sql_batch = """
-    CREATE EXTENSION "uuid-ossp";
-    CREATE EXTENSION "pgcrypto";
+    CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+    CREATE EXTENSION IF NOT EXISTS "pgcrypto";
     """
     op.execute(sql_batch)
 

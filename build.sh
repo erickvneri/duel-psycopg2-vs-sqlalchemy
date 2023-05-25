@@ -1,4 +1,4 @@
-export PGPASSWORD='super_test_password'
+export PGPASSWORD='hello_world'
 
 ##
 # DB Connect callbacks
@@ -16,7 +16,7 @@ do_connect \
 <<SQL
 SELECT pg_terminate_backend(pid)
 FROM pg_stat_activity
-WHERE datname='sample_database';
+WHERE datname='hello_world';
 COMMIT;
 SQL
 
@@ -24,7 +24,7 @@ SQL
 # Drop databases
 do_connect \
 <<SQL
-DROP DATABASE IF EXISTS sample_database;
+DROP DATABASE IF EXISTS hello_world;
 COMMIT;
 SQL
 
@@ -32,7 +32,7 @@ SQL
 # Recreate databases
 do_connect \
 <<SQL
-CREATE DATABASE sample_database;
+CREATE DATABASE hello_world;
 COMMIT;
 SQL
 

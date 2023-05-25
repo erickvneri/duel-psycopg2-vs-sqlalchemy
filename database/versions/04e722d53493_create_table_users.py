@@ -10,24 +10,29 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '04e722d53493'
-down_revision = 'a3bb52d4a435'
+revision = "04e722d53493"
+down_revision = "a3bb52d4a435"
 branch_labels = None
 depends_on = None
 
 
 def upgrade() -> None:
     sql_batch = """
-    CREATE TABLE IF NOT EXISTS users (
-        uuid UUID DEFAULT uuid_generate_v1() PRIMARY KEY,
-        username VARCHAR(255) NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        created_at TIMESTAMPTZ DEFAULT NOW(),
-        updated_at TIMESTAMPTZ DEFAULT NOW(),
-        deleted_at TIMESTAMPTZ
-    );
+        CREATE TABLE IF NOT EXISTS users (
+            uuid UUID DEFAULT uuid_generate_v1() PRIMARY KEY,
+            username VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL,
+            password VARCHAR(255) NOT NULL,
+            verified BOOLEAN DEFAULT FALSE,
+            verified_at TIMESTAMPTZ,
+            access_policy VARCHAR[] DEFAULT '{users,profiles}', -- and other APIs
+            created_at TIMESTAMPTZ DEFAULT NOW(),
+            updated_at TIMESTAMPTZ DEFAULT NOW(),
+            deleted_at TIMESTAMPTZ
+        );
     """
     op.execute(sql_batch)
+
 
 def downgrade() -> None:
     pass
